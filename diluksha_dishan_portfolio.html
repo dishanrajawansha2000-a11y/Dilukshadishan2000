@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diluksha Dishan | Property Investment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #c9a84c;
+    --gold-dim: #8a6d2f;
+    --bg: #0a0a0b;
+    --bg2: #111114;
+    --bg3: #17171b;
+    --text: #e8e4dc;
+    --text-dim: #8a8580;
+    --border: rgba(201,168,76,0.18);
+    --border-light: rgba(201,168,76,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,11,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8rem 4rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 20%; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .hero-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .hero-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    max-width: 540px;
+    line-height: 1.9;
+    margin-bottom: 3rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.85rem 2rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    color: var(--bg);
+    background: var(--gold);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .btn:hover {
+    background: transparent;
+    color: var(--gold);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--gold);
+  }
+
+  .btn-outline:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-num {
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* EXPERIENCE */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .exp-meta {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    line-height: 1.8;
+  }
+
+  .exp-period {
+    color: var(--gold);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+  }
+
+  .exp-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .exp-company {
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .exp-desc {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    line-height: 1.9;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--bg3);
+    border: 1px solid var(--border-light);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .edu-card:hover {
+    border-color: var(--border);
+  }
+
+  .edu-year {
+    font-size: 0.55rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-inst {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+  }
+
+  /* PROJECTS */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border-light);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .project-card:hover {
+    border-color: var(--gold-dim);
+    background: var(--bg3);
+    transform: translateX(4px);
+  }
+
+  .project-num {
+    font-size: 0.55rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.8rem;
+  }
+
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-desc {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    line-height: 1.9;
+    max-width: 580px;
+  }
+
+  .project-period {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* SKILLS */
+  .skills-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-light);
+    border: 1px solid var(--border-light);
+  }
+
+  .skill-item {
+    background: var(--bg2);
+    padding: 1.8rem 2rem;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .skill-item:hover {
+    background: var(--bg3);
+    color: var(--gold);
+  }
+
+  .skill-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+
+  /* AWARDS */
+  .awards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .award-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid var(--border-light);
+    background: var(--bg2);
+  }
+
+  .award-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    line-height: 1;
+    font-weight: 300;
+  }
+
+  .award-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .award-sub {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* CONTACT */
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--text);
+    margin-bottom: 2rem;
+  }
+
+  .contact-intro em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid var(--border-light);
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    transition: all 0.3s;
+    background: var(--bg2);
+  }
+
+  .contact-link:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--bg3);
+  }
+
+  .contact-link-label {
+    font-size: 0.55rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+
+  .contact-link-value {
+    font-size: 0.75rem;
+    color: var(--text);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border-light);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--gold);
+  }
+
+  /* DIVIDER */
+  .full-divider {
+    border: none;
+    height: 1px;
+    background: var(--border-light);
+    margin: 0;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-label { animation: fadeUp 0.7s ease both; }
+  h1 { animation: fadeUp 0.7s 0.1s ease both; }
+  .hero-subtitle { animation: fadeUp 0.7s 0.2s ease both; }
+  .hero-desc { animation: fadeUp 0.7s 0.3s ease both; }
+  .hero-cta { animation: fadeUp 0.7s 0.4s ease both; }
+  .hero-stats { animation: fadeUp 0.7s 0.5s ease both; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .exp-item { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .skills-container { grid-template-columns: 1fr 1fr; }
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Diluksha Dishan</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-label">Available for Internship · Jul 2026</div>
+    <h1>Diluksha<br><em>Dishan</em></h1>
+    <p class="hero-subtitle">Property &amp; Investment Management</p>
+    <p class="hero-desc">
+      Third-year undergraduate at General Sir John Kotelawala Defence University. Specialising in property valuation, real estate development, and investment analysis — with five years of parallel experience in digital design and marketing.
+    </p>
+    <div class="hero-cta">
+      <a href="mailto:dilukshadishan@gmail.com" class="btn">Get In Touch</a>
+      <a href="#projects" class="btn btn-outline">View Projects</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Years Design Exp.</div>
+      </div>
+      <div>
+        <div class="stat-num">6</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div>
+        <div class="stat-num">3rd</div>
+        <div class="stat-label">Year Undergraduate</div>
+      </div>
+      <div>
+        <div class="stat-num">1st</div>
+        <div class="stat-label">LANDMARKS 2025</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="full-divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="exp-period">Feb 2022 – Mar 2026</div>
+      <div style="margin-top:0.5rem;">Mathugama</div>
+    </div>
+    <div>
+      <div class="exp-role">Graphic Designer</div>
+      <div class="exp-company">Digital Marketing · Freelancer</div>
+      <div class="exp-desc">Five years of experience spanning graphic design, web development, and digital marketing. Delivered creative solutions for a diverse range of clients across Sri Lanka.</div>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-meta">
+      <div class="exp-period">Dec 2022 – Oct 2023</div>
+      <div style="margin-top:0.5rem;">Dodangoda</div>
+    </div>
+    <div>
+      <div class="exp-role">Floor Executive</div>
+      <div class="exp-company">Sampath Super Trading Pvt Ltd</div>
+      <div class="exp-desc">Assisted customers, managed stock displays, and supported smooth daily sales operations at a quality product distribution company.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">Feb 2024 – Dec 2028</div>
+      <div class="edu-degree">BSc (Hons) Property &amp; Investment Management</div>
+      <div class="edu-inst">General Sir John Kotelawala Defence University · Sooriyawewa</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">Oct 2023 – Oct 2024</div>
+      <div class="edu-degree">Diploma in Human Resource Management</div>
+      <div class="edu-inst">Institute of Nations Professional Management · Nugegoda</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">Nov 2025 – Apr 2026</div>
+      <div class="edu-degree">Diploma in Building Information Modeling</div>
+      <div class="edu-inst">CAD Academy · Colombo</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">Sep 2025 – Jan 2026</div>
+      <div class="edu-degree">Foundations of Project Management</div>
+      <div class="edu-inst">University of Moratuwa · Moratuwa</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">Sep 2023 – Dec 2023</div>
+      <div class="edu-degree">Diploma in Information Technology</div>
+      <div class="edu-inst">Thurunu Shakthi Vocational Education</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">Jan 2006 – Dec 2019</div>
+      <div class="edu-degree">A/L Technology Stream</div>
+      <div class="edu-inst">C.W.W Kannangara Central College · Mathugama · Ranked 175, Kalutara District</div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-list">
+    <div class="project-card">
+      <div>
+        <div class="project-num">P — 01</div>
+        <div class="project-title">Chilaw Town Development</div>
+        <div class="project-desc">Collaborated with government officials, tourism stakeholders, and local businesses to create a comprehensive tourism development strategy for Chilaw — covering eco-tourism, cultural tourism, and heritage tourism.</div>
+      </div>
+      <div class="project-period">Feb – Apr 2026</div>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-num">P — 02</div>
+        <div class="project-title">Property Valuation Software</div>
+        <div class="project-desc">A tool to quickly estimate real estate values using market data, location analytics, and current trends. Generates structured reports for investors and property managers.</div>
+      </div>
+      <div class="project-period">Jan – Feb 2026</div>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-num">P — 03</div>
+        <div class="project-title">Environmental Impact — Rubber Factory, Bellana</div>
+        <div class="project-desc">Investigated the environmental impact of a rubber factory through water and soil pollution analysis, community interviews, and health impact assessment. Recommended waste treatment and monitoring solutions.</div>
+      </div>
+      <div class="project-period">Jul – Nov 2025</div>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-num">P — 04</div>
+        <div class="project-title">Gampaha Municipal Council Analysis</div>
+        <div class="project-desc">Comprehensive analysis of GMC's service delivery, infrastructure management, and inter-departmental coordination for urban development and public health improvements.</div>
+      </div>
+      <div class="project-period">Feb – May 2025</div>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-num">P — 05</div>
+        <div class="project-title">Mortgage Valuation — Anuradhapura District</div>
+        <div class="project-desc">Conducted mortgage valuation using the comparables method and the cost method — adjusting for size, condition, location, rebuilding cost, and depreciation to assist banks in determining fair loan amounts.</div>
+      </div>
+      <div class="project-period">Jun – Aug 2024</div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- SKILLS -->
+<section>
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-container">
+    <div class="skill-item"><span class="skill-dot"></span>Graphic Design</div>
+    <div class="skill-item"><span class="skill-dot"></span>Problem Solving</div>
+    <div class="skill-item"><span class="skill-dot"></span>Creative Thinking</div>
+    <div class="skill-item"><span class="skill-dot"></span>Web Development</div>
+    <div class="skill-item"><span class="skill-dot"></span>Leadership</div>
+    <div class="skill-item"><span class="skill-dot"></span>Time Management</div>
+    <div class="skill-item"><span class="skill-dot"></span>Property Valuation</div>
+    <div class="skill-item"><span class="skill-dot"></span>Digital Marketing</div>
+    <div class="skill-item"><span class="skill-dot"></span>Building Info Modeling</div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- AWARDS -->
+<section>
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Awards</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="awards-container">
+    <div class="award-item">
+      <div class="award-icon">I</div>
+      <div>
+        <div class="award-title">LANDMARKS 2025 — 1st Place</div>
+        <div class="award-sub">Inter-University Real Estate Documentary Competition · General Sir John Kotelawala Defence University · 2025</div>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">I</div>
+      <div>
+        <div class="award-title">Inter-Faculty Volleyball Champion</div>
+        <div class="award-sub">First place in the university inter-faculty volleyball tournament · KDU · 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Contact</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="contact-wrapper">
+    <div>
+      <p class="contact-intro">Seeking a six-month internship from <em>July 2026</em> in property &amp; investment.</p>
+      <p style="font-size:0.75rem; color:var(--text-dim); line-height:1.9;">Open to opportunities in property management, valuation, real estate development, and investment analysis across Sri Lanka.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:dilukshadishan@gmail.com" class="contact-link">
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-value">dilukshadishan@gmail.com</div>
+        </div>
+      </a>
+      <div class="contact-link">
+        <div>
+          <div class="contact-link-label">Phone</div>
+          <div class="contact-link-value">0770 347 420</div>
+        </div>
+      </div>
+      <div class="contact-link">
+        <div>
+          <div class="contact-link-label">Location</div>
+          <div class="contact-link-value">No 412, Mawathawatta, Bellana, Sri Lanka</div>
+        </div>
+      </div>
+      <div class="contact-link">
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-value">Diluksha Dishan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Diluksha Dishan</div>
+  <div>Property &amp; Investment Management · KDU · Sri Lanka</div>
+  <div>© 2026</div>
+</footer>
+
+</body>
+</html>
